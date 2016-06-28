@@ -282,6 +282,7 @@ Rails.application.routes.draw do
     resources :genres
   end
 
+  # This creates two custom routes for songs that correspond with controller actions of the same name.
   resources :songs do
     member do
       post 'add_favorite'
@@ -291,26 +292,29 @@ Rails.application.routes.draw do
 end
 ```
 
-> What looks different when you run `rake routes` now?
+> This application uses a gem called Devise to handle User authentication. All you need to know about that for now is that it generates a User model.
+>
+> Also, see how we've indented resources statements? That's called nested resources. It enables us to visit URLs like `http://localhost:3000/artists/1/songs/2`. You'll learn more about those later.
+
+<!-- AM: Run rake routes. -->
 
 ```erb
 # app/views/artists/show.html.erb
-
-<h2><%= @artist.name %> <a href="/artists/<%= @artist.id %>/edit">(edit)</a></h2>
-<h4><%= @artist.nationality %></h4>
-
-<img class='artist-photo' src="<%= @artist.photo_url %>">
 
 <h3>Songs <%= link_to "(+)", new_artist_song_path(@artist) %></h3>
 <ul>
   <% @artist.songs.each do |song| %>
     <li>
       <%= link_to "#{song.title} (#{song.album})", artist_song_path(@artist, song) %>
+
+      # If this song has already been favorited, set the link to remove favorite.
       <% if song.favorites.length > 0 %>
         <%= link_to "&hearts;".html_safe, remove_favorite_song_path(song), method: :delete, class: "fav" %>
+      # If the song has not been favorited, set the link to add favorite.
       <% else %>
         <%= link_to "&hearts;".html_safe, add_favorite_song_path(song), method: :post, class: "no-fav" %>
       <% end %>
+
     </li>
   <% end %>
 </ul>
@@ -334,7 +338,9 @@ Below are some line-by-line instructions on how to implement `add_favorite` and 
 `remove_favorite` should...  
   1. Save the song you will be un-favoriting in an instance variable.  
   2. Delete the Favorite instance that references the song that is being un-favorited.  
-  3. Redirect to the show page for the artist once the song is added.  
+  3. Redirect to the show page for the artist once the song is added.
+
+> Because we are using Devise to handle user authentication, it gives us access to a `current_user` method that, when called, returns the person who is currently logged in. At a high level, think of it as running something like `User.find_by(logged_in: true)`.
 
 If you'd like to take a peek now, [here's the Tunr Favorite solution](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-solution).
 
