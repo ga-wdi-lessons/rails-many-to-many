@@ -291,6 +291,8 @@ Rails.application.routes.draw do
 end
 ```
 
+> What looks different when you run `rake routes` now?
+
 ```erb
 # app/views/artists/show.html.erb
 
