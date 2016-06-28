@@ -341,6 +341,8 @@ Below are some line-by-line instructions on how to implement `add_favorite` and 
   3. Redirect to the show page for the artist once the song is added.
 
 > Because we are using Devise to handle user authentication, it gives us access to a `current_user` method that, when called, returns the person who is currently logged in. At a high level, think of it as running something like `User.find_by(logged_in: true)`.
+>
+> This means that in your controller you can write code like `Favorite.create(user: current_user)`.
 
 If you'd like to take a peek now, [here's the Tunr Favorite solution](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-solution).
 
