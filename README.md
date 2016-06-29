@@ -35,9 +35,7 @@ one id in a one-to-many relationship.
 
 Instead, we must create a new table, a *join table* to store these associations.
 
-## Join Tables (10 minutes / 0:20)
-
-<!-- AM: Whiteboard! -->
+### Join Tables
 
 A join table is a separate intermediate table in our database whose job is to store information
 about the relationship between our two models of the many-to-many. For each
@@ -53,10 +51,10 @@ We can also add columns as needed to store additional information about the rela
 
 In rails, we should always create a model to represent our join table. The name can technically be anything we want, but really the model name should be as descriptive as possible, and indicate that it represents an *association*.
 
-### YOU DO: Naming Join Tables (10 minutes / 0:30)
+### You Do: Naming Join Tables (10 minutes / 0:20)
 
-In pairs, spend **5 minutes** answering the following questions for the below list of models...  
-  1. What would a many-to-many relationship look like between these two models?
+In pairs, spend **5 minutes** answering the following questions for the below pairs of models...  
+  1. Should the relationship between these two models be represented using a many-to-many relationship?
   2. What would be a descriptive name for their resulting join table?
   3. What would be a useful additional column to include in the join table (e.g., `num_guests`)?
 
@@ -64,17 +62,17 @@ Models
   1. Authors and Books
   2. Students and Courses  
   3. Doctors and Patients  
-  4. Posts and Categories  
-  5. Songs and Playlists  
+  4. Blog Posts and Categories  
+  5. Reddit Posts and Votes  
 
-### Generating the Model / Migration (10 minutes / 0:40)
+### Generating the Model / Migration (10 minutes / 0:30)
 
 > We will be using Attendances as the in-class example. We encourage you **not** to code along -- just watch. You will have the chance to implement this during in-class exercises with Tunr.  
 
 Attendances represent the many-to-many relationship between two models: Users and Events. Let's set them up in a brand new Rails application...
 
 ```bash
-$ rails new attendance-taker -d postgresql
+$ rails new attendance-tracker -d postgresql
 $ rails g model User username:string age:integer
 $ rails g model Event title:string location:string
 ```
@@ -117,21 +115,23 @@ end
 
 > **What is `t.references`?** It does the same thing as writing out `belongs_to :model`.
 
-This will generate an Attendance model, with `user_id`, `event_id` and `num_guest` columns.
+This will generate an Attendance table with `user_id`, `event_id` and `num_guest` columns. Take a look at it using `psql` in the Terminal.
 
-### You Do: Create the Favorite Model in Tunr (10 minutes / 0:50)
+### You Do: Create the Favorite Model in Tunr (10 minutes / 0:40)
 
 > 5 minutes exercise. 5 minutes review.
+
+For the in-class exercises you will be adding a "favoriting" feature to Tunr. In this version of Tunr, a user should be able to favorite a song.
 
 [Here's some starter code](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-starter). Make sure to work off the `favorites-starter` branch.
 
 Create a model and migration for `Favorite`. It should have `song_id` and `user_id` columns.
 
-## Break (10 minutes / 1:00)
+> A `User` model and user authentication functionality has already been provided for you. Because of this, you may see some code in here -- particularly in `models/user.rb` and `routes.rb` that you have not seen before. We will explain what it does in a later mini-lesson.
 
-### Adding the ActiveRecord Relationships (10 minutes / 1:10)
+### Adding the ActiveRecord Relationships (10 minutes / 0:50)
 
-Once we create our join model, we need to update our other models to indicate the associations between them.
+Once we create our join model, we need to update our other models to indicate the associations between them. Let's visualize these associations with an ERD.
 
 For example, in our Users/Events example, we should have this...
 
@@ -157,12 +157,16 @@ end
 
 We're essentially defining `Attendance` as an intermediary model/table between `Event` and `User`. An event has many users through `Attendance` and vice versa.
 
-### You Do: Update Tunr Models (10 minutes / 1:20)
+### You Do: Update Tunr Models (10 minutes / 1:00)
 
 Take **5 minutes** to update the Song, User and Favorite models to ensure we have the
 correct associations.
 
-### Testing our Association (10 minutes / 1:30)
+> If you finish early, go ahead and start testing out these new associations using the Rails console.
+
+## Break (10 minutes / 1:10)
+
+### Testing Our Associations (10 minutes / 1:20)
 
 It's a good idea to use the `rails console` to test creating our associations.
 
@@ -201,9 +205,9 @@ Attendance.find_by(user: bob, event: prom).destroy # will only destroy the first
 Attendance.where(user: bob, event: prom).destroy_all # will destroy all that match
 prom.attendances.where(user: bob).destroy_all
 ```
-## Break (10 minutes / 1:40)
+## Break (10 minutes / 1:30)
 
-### Updating The Controller (15 minutes / 1:55)
+### Updating The Controller (15 minutes / 1:45)
 
 So we've been able to generate associations between our models via Pry. But what about our end users? How would somebody go about creating/removing a favorite on Tunr?
 * We need to add that functionality by modifying our controller, view and routes.
@@ -321,12 +325,14 @@ end
 ```
 
 
-### You Do: Update Songs Controller (20 minutes / 2:15)
+### You Do: Update Songs Controller (20 minutes / 2:05)
 
 Take **15 minutes** to update the `add_favorite` and `remove_favorite` actions in the playlists controller to
 add and remove songs from the playlist. Look at the `artists/show.html.erb` view to see how we route to these actions.
 
 Below are some line-by-line instructions on how to implement `add_favorite` and `remove_favorite`. I encourage you not to look unless you are stuck!  
+
+Start out by logging into the application using the "Sign Up" feature. It should be visible in the top-right corner on the home page. Once you've done that, tackle the controller actions.
 
 `add_favorite` should...  
   1. Save the song which you will be favoriting in an instance variable.  
@@ -348,11 +354,14 @@ This means that in your controller you can write code like `Favorite.create(user
 
 #### If You Need the Solution...
 
-[...you can take a peek at it here.](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-solution).
+[...you can take a peek at it here.](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-solution)
 
+## Closing Q&A (10 minutes / 2:15)
 
-## Closing Q&A (10 minutes / 2:25)
+## Homework: Scribble
 
-## Bonus Homework: [Scribble Categories and Tags](https://github.com/ga-dc/scribble/blob/master/readme.md#many-to-many-bonus)
+If there's time left, spend the remainder of class working on Scribble. If you have completed the required steps, try implementing a many-to-many relationship between `Posts` and `Categories` using a `Tags` join table. This will require creating some new classes.
+
+[More information is available on the Scribble repo.](https://github.com/ga-dc/scribble/blob/master/readme.md#many-to-many-bonus)
 
 Example: [Deployed Scribble](https://wdi-scribble.herokuapp.com/)
