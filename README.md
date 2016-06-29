@@ -8,18 +8,6 @@
 * Use `has_many through` to connect two models via a join model in Rails
 * Use a many-to-many relationship to implement a feature in a Rails app
 
-### Screencast of this lesson
-
-[Screencast on Youtube](https://www.youtube.com/watch?v=JxW8lJzLhxI)
-[Andy 1](https://youtu.be/PXNrk6m4WRg)
-[Andy 2](https://youtu.be/Gr3GV8dUkDE)
-
-### References
-
-* [Rails Guides - Has Many Through](http://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
-* [Tunr Favorites Starter](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-starter)
-* [Tunr Favorites Solution](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-solution)
-
 ## Many-to-Many Relationships (10 minutes / 0:10)
 
 Many-to-many relationships are fairly common in apps. Examples might include:
@@ -365,3 +353,15 @@ If there's time left, spend the remainder of class working on Scribble. If you h
 [More information is available on the Scribble repo.](https://github.com/ga-dc/scribble/blob/master/readme.md#many-to-many-bonus)
 
 Example: [Deployed Scribble](https://wdi-scribble.herokuapp.com/)
+
+## Screencasts
+
+* [Screencast on Youtube](https://www.youtube.com/watch?v=JxW8lJzLhxI)
+* [Andy 1](https://youtu.be/PXNrk6m4WRg)
+* [Andy 2](https://youtu.be/Gr3GV8dUkDE)
+
+## References
+
+* [Rails Guides - Has Many Through](http://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
+* [Tunr Favorites Starter](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-starter)
+* [Tunr Favorites Solution](https://github.com/ga-dc/tunr_rails_many_to_many/tree/favorites-solution)
