@@ -315,8 +315,7 @@ end
 
 ### You Do: Update Songs Controller (20 minutes / 2:05)
 
-Take **15 minutes** to update the `add_favorite` and `remove_favorite` actions in the playlists controller to
-add and remove songs from the playlist. Look at the `artists/show.html.erb` view to see how we route to these actions.
+Take **15 minutes** to create the `add_favorite` and `remove_favorite` actions in the **songs controller**. Look at the `artists/show.html.erb` view to see how we route to these actions.
 
 Below are some line-by-line instructions on how to implement `add_favorite` and `remove_favorite`. I encourage you not to look unless you are stuck!  
 
