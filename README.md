@@ -317,7 +317,9 @@ end
 
 Take **15 minutes** to create the `add_favorite` and `remove_favorite` actions in the **songs controller**. Look at the `artists/show.html.erb` view to see how we route to these actions.
 
-Below are some line-by-line instructions on how to implement `add_favorite` and `remove_favorite`. I encourage you not to look unless you are stuck!  
+Below are some line-by-line instructions on how to implement `add_favorite` and `remove_favorite`. We encourage you not to look at the solution unless you are stuck!  
+
+#### Instructions
 
 Start out by logging into the application using the "Sign Up" feature. It should be visible in the top-right corner on the home page. Once you've done that, tackle the controller actions.
 
