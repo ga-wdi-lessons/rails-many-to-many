@@ -44,7 +44,7 @@ In rails, we should always create a model to represent our join table. The name 
 In pairs, spend **5 minutes** answering the following questions for the below pairs of models...  
   1. Should the relationship between these two models be represented using a many-to-many relationship?
   2. What would be a descriptive name for their resulting join table?
-  3. What would be a useful additional column to include in the join table (e.g., `num_guests`)?
+  3. What would be a useful additional column to include in the join table (e.g., `order`)?
 
 Models  
   1. Authors and Books
