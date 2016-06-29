@@ -337,7 +337,7 @@ Start out by logging into the application using the "Sign Up" feature. It should
 
 #### How Do We Get the Logged-In User?
 
-Because we are using Devise to handle user authentication, it gives us access to a `current_user` method that, when called, returns the person who is currently logged in. At a high level, think of it as running something like `User.find_by(logged_in: true)`.  
+Because we are using Devise to handle user authentication, it gives us access to a `current_user` method that, when called, returns the user who is currently logged in. At a high level, think of it as running something like `User.find_by(logged_in: true)`.  
 
 This means that in your controller you can write code like `Favorite.create(user: current_user)`.
 
