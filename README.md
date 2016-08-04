@@ -197,9 +197,8 @@ Attendance.find_by(user: bob, event: prom).destroy # will only destroy the first
 Attendance.where(user: bob, event: prom).destroy_all # will destroy all that match
 prom.attendances.where(user: bob).destroy_all
 ```
-## Break (10 minutes / 1:30)
 
-### Updating The Controller (15 minutes / 1:45)
+### Updating The Controller (15 minutes / 1:35)
 
 So we've been able to generate associations between our models via Pry. But what about our end users? How would somebody go about creating/removing a favorite on Tunr?
 * We need to add that functionality by **modifying our controller, view and routes**.
@@ -314,6 +313,7 @@ end
 </ul>
 ```
 
+## Break (10 minutes / 1:45)
 
 ### You Do: Update Songs Controller (20 minutes / 2:05)
 
