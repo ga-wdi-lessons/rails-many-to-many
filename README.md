@@ -21,7 +21,7 @@ two tables (the `belongs_to` table) to store these associations. We'd run into a
 problem where the column would need to store multiple ids, rather than just the
 one id in a one-to-many relationship.
 
-Instead, we must create a new table, a *join table* to store these associations.
+Instead, we must create a new table, a ***join table*** to store these associations.
 
 ### Join Tables
 
@@ -70,6 +70,10 @@ columns on the command line) Rails will automatically generate the correct
 migration for us.
 
 Onto the model files...
+
+```bash
+$ touch app/models/attendance.rb
+```
 
 ```rb
 # models/attendance.rb
@@ -145,14 +149,15 @@ end
 
 We're essentially defining `Attendance` as an intermediary model/table between `Event` and `User`. An event has many users through `Attendance` and vice versa.
 
-### You Do: Update Tunr Models (10 minutes / 1:00)
+## Break (10 minutes / 1:00)
+
+### You Do: Update Tunr Models (10 minutes / 1:10)
 
 Take **5 minutes** to update the Song, User and Favorite models to ensure we have the
 correct associations.
 
 > If you finish early, go ahead and start testing out these new associations using the Rails console.
 
-## Break (10 minutes / 1:10)
 
 ### Testing Our Associations (10 minutes / 1:20)
 
@@ -193,12 +198,11 @@ Attendance.find_by(user: bob, event: prom).destroy # will only destroy the first
 Attendance.where(user: bob, event: prom).destroy_all # will destroy all that match
 prom.attendances.where(user: bob).destroy_all
 ```
-## Break (10 minutes / 1:30)
 
-### Updating The Controller (15 minutes / 1:45)
+### Updating The Controller (15 minutes / 1:35)
 
 So we've been able to generate associations between our models via Pry. But what about our end users? How would somebody go about creating/removing a favorite on Tunr?
-* We need to add that functionality by modifying our controller, view and routes.
+* We need to add that functionality by **modifying our controller, view and routes**.
 
 Let's take a look at `songs_controller.rb`...
 * What do we currently have in here?
@@ -237,8 +241,7 @@ class SongsController < ApplicationController
   # update
   def update
     @song = Song.find(params[:id])
-    @artist = Artist.find(params[:artist_id])
-    @song.update(song_params.merge(artist: @artist))
+    @song.update(song_params)
     redirect_to artist_song_path(@song.artist, @song)
   end
 
@@ -286,9 +289,8 @@ end
 
 > This application uses a gem called Devise to handle User authentication. All you need to know about that for now is that it generates a User model.
 >
-> Also, see how we've indented resources statements? That's called nested resources. It enables us to visit URLs like `http://localhost:3000/artists/1/songs/2`. You'll learn more about those later.
+> Note also that there are indented resources statements--check out `rake routes`!
 
-<!-- AM: Run rake routes. -->
 
 ```erb
 # app/views/artists/show.html.erb
@@ -312,6 +314,7 @@ end
 </ul>
 ```
 
+## Break (10 minutes / 1:45)
 
 ### You Do: Update Songs Controller (20 minutes / 2:05)
 
@@ -347,7 +350,7 @@ This means that in your controller you can write code like `Favorite.create(user
 
 ## Closing Q&A (10 minutes / 2:15)
 
-## Homework: Scribble
+## Additional Exercise: Many-to-Many Scribble
 
 If there's time left, spend the remainder of class working on Scribble. If you have completed the required steps, try implementing a many-to-many relationship between `Posts` and `Categories` using a `Tags` join table. This will require creating some new classes.
 
