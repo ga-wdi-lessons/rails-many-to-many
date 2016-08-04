@@ -72,7 +72,7 @@ migration for us.
 Onto the model files...
 
 ```bash
-touch app/models/attendance.rb
+$ touch app/models/attendance.rb
 ```
 
 ```rb
