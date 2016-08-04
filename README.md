@@ -149,14 +149,15 @@ end
 
 We're essentially defining `Attendance` as an intermediary model/table between `Event` and `User`. An event has many users through `Attendance` and vice versa.
 
-### You Do: Update Tunr Models (10 minutes / 1:00)
+## Break (10 minutes / 1:00)
+
+### You Do: Update Tunr Models (10 minutes / 1:10)
 
 Take **5 minutes** to update the Song, User and Favorite models to ensure we have the
 correct associations.
 
 > If you finish early, go ahead and start testing out these new associations using the Rails console.
 
-## Break (10 minutes / 1:10)
 
 ### Testing Our Associations (10 minutes / 1:20)
 
