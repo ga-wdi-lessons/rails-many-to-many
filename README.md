@@ -5,7 +5,7 @@
 * Differentiate between a one-to-many and a many-to-many relationship
 * Describe the role of a join table in a many-to-many relationship
 * Create a Model to represent a join table
-* Use `has_many :through` to connect two models via a join model in Rails
+* Use the `has_many :through` association to connect two models via a join model in Rails
 * Use a many-to-many relationship to implement a feature in a Rails application
 
 ## Framing
@@ -48,7 +48,7 @@ many-to-many relationship, we'll need one join table.
 
 Each join table should have, at minimum, **two foreign_key columns**. Each foreign key will represent one of the tables it's joining. In the example of `Doctors` and `Patients`, we would create a **new** join table that has a `doctor_id` column and a `patient_id` column.
 
-We can also add columns as needed to store additional information about the relationship. For example, we may choose to add a `date_of_visit` column which stores a `datetime` value representing when the appointment is, and could be different for each doctor + patient visit.
+We can also add columns as needed to store additional information about the relationship. For example, we may choose to add a `date_of_visit` column, which stores a `datetime` value representing when the appointment is, and could be different for each doctor + patient visit.
 
 ## Join Models & Tables
 
