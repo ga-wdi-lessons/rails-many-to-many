@@ -5,26 +5,26 @@
 * Differentiate between a one-to-many and a many-to-many relationship
 * Describe the role of a join table in a many-to-many relationship
 * Create a Model to represent a join table
-* Use `has_many through` to connect two models via a join model in Rails
-* Use a many-to-many relationship to implement a feature in a Rails app
+* Use the `has_many :through` association to connect two models via a join model in Rails
+* Use a many-to-many relationship to implement a feature in a Rails application
 
 ## Framing
 
-Let's think back to what we have learned so far in this unit. We now have the ability to model real world entities and their relationships, and have built web apps that have persisted data about these models.
+When we think back on what we have learned so far in this unit, we now have the ability to model real world entities and their relationships, and we have built web applications that have persisted data within these models.
 
 **Q**. Reviewing what we have learned about relational databases and ActiveRecord, what has been the predominate relationship we have used so far?
 
 ---
 
-Up to this point, we have focused on domains that only have two models, i.e. `Artists`, and `Songs`, which in turn have a strict one-to-many relationships. At it's core, we expressed these relationship with ActiveRecord methods, and linked the tables via a foreign key on the child table.
+Up to this point, we have focused on domains that only have two models, i.e. `Artists`, and `Songs`, which in turn have a strict one-to-many relationship. At its core, we expressed these relationships with ActiveRecord methods, and linked the tables via a foreign key on the child table.
 
-This type of relationship is probably the most common, but today we will be looking at another widely used and very useful relationship that will help build out more features and different types of features to our Rails apps.
+This type of relationship is probably the most common, but today we will be looking at another widely used and very useful relationship that will help build out additional features within our Rails apps.
 
-## Many-to-Many Relationships (10 minutes / 0:10)
+## Many-to-Many Relationships (10 minutes)
 
 Put simply, Many-to-Many relationships arise when one or more records in a table, has a relationship with one or more records in another table.
 
-Many-to-many relationships are fairly common in apps. Examples might include:
+Many-to-many relationships are fairly common in applications. Some examples include:
 
 * `Posts` can be sorted into multiple `Categories`, `Categories` contain many `Posts`.
 * `Theaters` can show many `Movies`, and `Movies` may appear in many `Theaters`.
@@ -48,13 +48,13 @@ many-to-many relationship, we'll need one join table.
 
 Each join table should have, at minimum, **two foreign_key columns**. Each foreign key will represent one of the tables it's joining. In the example of `Doctors` and `Patients`, we would create a **new** join table that has a `doctor_id` column and a `patient_id` column.
 
-We can also add columns as needed to store additional information about the relationship. For example, we may choose to add an `date_of_visit` column which stores a `datetime` value representing when the appointment is, and could be different for each doctor + patient visit.
+We can also add columns as needed to store additional information about the relationship. For example, we may choose to add a `date_of_visit` column, which stores a `datetime` value representing when the appointment is, and could be different for each doctor + patient visit.
 
 ## Join Models & Tables
 
-In order to do many-to-many relationships in Rails, convention says to create a new model to represent our join table. The name can technically be anything we want, but really the model name should be as descriptive as possible, and indicate that it represents an *association*.
+In order to do many-to-many relationships in Rails, convention says to create a new model to represent our join table. The name can technically be anything we want, but the model name should be as descriptive as possible, and indicate that it represents an *association*.
 
-### You Do: Naming Join Tables (10 minutes / 0:20)
+### You Do: Naming Join Tables (10 minutes)
 
 In pairs, spend **5 minutes** answering the following questions for the below pairs of models...  
   1. Should the relationship between these two models be represented using a many-to-many relationship?
@@ -68,11 +68,11 @@ Models
   4. Blog Posts and Categories  
   5. Reddit Posts and Votes  
 
-### I Do: Generating the Model / Migration (10 minutes / 0:30)
+### I Do: Generating the Model / Migration (10 minutes)
 
 > **Note**: You are encouraged to **not** code along during this section -- just sit back and enjoy the ride! You will have the chance to implement this during in-class exercises with Tunr.  
 
-In order to see how to implement an example of a common many-to-many relationship in Rails, I'm going to build an event tracking application. For this app, I am only going to focus on the ability for a user to attend an event.
+In order to see how to implement an example of a common many-to-many relationship in Rails, I'm going to build an event tracking application. For this application, I am only going to focus on the ability for a user to attend an event.
 
 <details>
 <summary>**Q**. What should the three models in our application be?</summary>
@@ -203,22 +203,22 @@ It's a good idea to use the `rails console` to test creating our associations.
 Here's an example of using the association of users / events...
 
 ```ruby
-bob = User.create({username: "Bob", age: 25})
-carly = User.create({username: "Carly", age: 28})
+george = User.create({username: "George", age: 18})
+lorraine = User.create({username: "Lorraine", age: 17})
 
-prom = Event.create({title: "Under the Sea: 2015 Prom", location: "Greenville High School"})
-after_party = Event.create({title: "Eve's Awesome After-party", location: "Super Secret!" })
-brunch = Event.create({title: "BRUNCH!", location: "IHOP" })
+prom = Event.create({title: "Enchantment Under The Sea: 1955 Prom", location: "Hill Valley High School"})
+after_party = Event.create({title: "Betty's Awesome After-party", location: "Super Secret!" })
+brunch = Event.create({title: "Brunch!", location: "Lou's Cafe" })
 
 # We can create the association directly
-bob_going_to_the_prom = Attendance.create(user: bob, event: prom, num_guests: 1)
+george_going_to_the_prom = Attendance.create(user: george, event: prom, num_guests: 1)
 
 # Or using helper functionality
-bob.attendances.create(event: after_party, num_guests: 0)
+george.attendances.create(event: after_party, num_guests: 0)
 
 # Or the other way
-brunch.attendances.create(user: carly, num_guests: 10)
-prom.attendances.create(user: carly, num_guests: 1)
+brunch.attendances.create(user: lorraine, num_guests: 10)
+prom.attendances.create(user: lorraine, num_guests: 1)
 
 # To see who's going to an event
 prom.users
@@ -226,14 +226,14 @@ after_party.users
 brunch.users
 
 # To see a user's events
-bob.events
-carly.events
+george.events
+lorraine.events
 
 # To delete an association
-Attendance.find_by(user: bob, event: prom).destroy # will only destroy the first one that matches
+Attendance.find_by(user: george, event: prom).destroy # will only destroy the first one that matches
 
-Attendance.where(user: bob, event: prom).destroy_all # will destroy all that match
-prom.attendances.where(user: bob).destroy_all
+Attendance.where(user: george, event: prom).destroy_all # will destroy all that match
+prom.attendances.where(user: george).destroy_all
 ```
 
 ### We Do: Add Web Interface to Tunr (15 minutes / 1:35)
