@@ -229,11 +229,6 @@ brunch.users
 george.events
 lorraine.events
 
-# To delete an association
-Attendance.find_by(user: george, event: prom).destroy # will only destroy the first one that matches
-
-Attendance.where(user: george, event: prom).destroy_all # will destroy all that match
-prom.attendances.where(user: george).destroy_all
 ```
 
 ### We Do: Add Web Interface to Tunr (15 minutes / 1:35)
