@@ -104,7 +104,7 @@ $ touch app/models/attendance.rb
 ```rb
 # models/attendance.rb
 
-class Attendance < ActiveRecord::Base
+class Attendance < ApplicationRecord
   # Associations to come later...
 end
 ```
@@ -118,7 +118,7 @@ $ rails g migration create_attendances
 ```rb
 # db/migrate/*****_create_attendances.rb
 
-class CreateAttendances < ActiveRecord::Migration
+class CreateAttendances < ActiveRecord::Migration[5.0]
   def change
     create_table :attendances do |t|
       t.integer :num_guests, null: false
@@ -167,19 +167,19 @@ For example, in our Users/Events example, we should have this...
 
 ```ruby
 # models/attendance.rb
-class Attendance < ActiveRecord::Base
+class Attendance < ApplicationRecord
   belongs_to :event
   belongs_to :user
 end
 
 # models/event.rb
-class Event < ActiveRecord::Base
+class Event < ApplicationRecord
   has_many :attendances
   has_many :users, through: :attendances
 end
 
 # models/user.rb
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_many :attendances
   has_many :events, through: :attendances
 end
