@@ -1,4 +1,4 @@
-# Many-to-Many Relationships (using has_many :through) in Rails
+# Many-to-Many Relationships in Rails
 
 ## Learning Objectives
 
@@ -75,7 +75,7 @@ Models
 In order to see how to implement an example of a common many-to-many relationship in Rails, I'm going to build an event tracking application. For this application, I am only going to focus on the ability for a user to attend an event.
 
 <details>
-<summary>**Q**. What should the three models in our application be?</summary>
+<summary><strong>Q.</strong> What should the three models in our application be?</summary>
 
 Let's call them: `User`, `Event`, and `Attendance`
 
@@ -122,16 +122,16 @@ class CreateAttendances < ActiveRecord::Migration[5.0]
   def change
     create_table :attendances do |t|
       t.integer :num_guests, null: false
-      t.references :user, index: true, foreign_key: true
-      t.references :event, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true, null: false
+      t.references :event, index: true, foreign_key: true, null: false
 
-      t.timestamps null: false
+      t.timestamps
     end
   end
 end
 ```
 
-> **What is `t.references`?** It does the same thing as writing out `belongs_to :model`.
+> **What is `t.references`?** It creates a column for referencing rows in another table (foreign key).
 
 This will generate an Attendance table with `user_id`, `event_id` and `num_guest` columns. Take a look at it using `psql` in the Terminal.
 
@@ -386,7 +386,7 @@ Start out by logging into the application using the "Sign Up" feature. It should
 
 #### How Do We Get the Logged-In User?
 
-Because we are using Devise to handle user authentication, it gives us access to a `current_user` method that, when called, returns the user who is currently logged in. At a high level, think of it as running something like `User.find_by(logged_in: true)`.  
+Because we are using Devise to handle user authentication, it gives us access to a `current_user` method that, when called, returns the user who is currently logged in. Conceptually, think of it as running something like `User.find_by(logged_in: true)`.  
 
 This means that in your controller you can write code like `Favorite.create(user: current_user)`.
 
