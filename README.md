@@ -320,7 +320,7 @@ Rails.application.routes.draw do
   end
 
   resources :songs, only: [:index, :show] do
-  # This creates two custom routes for songs that correspond with controller actions of the same name.
+  # The member block creates two custom routes for songs that correspond with controller actions of the same name.
     member do
       post 'add_favorite'
       delete 'remove_favorite'
