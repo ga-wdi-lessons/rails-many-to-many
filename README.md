@@ -360,7 +360,7 @@ We've gone ahead a provided some starter code in `app/views/artists/show.html.er
 
 ### You Do: Update Songs Controller
 
-Take **15 minutes** to create the `add_favorite` and `remove_favorite` actions in the **songs controller**. Look at the `artists/show.html.erb` view to see how we route to these actions.
+Create the `add_favorite` and `remove_favorite` actions in the **songs controller**. Look at the `artists/show.html.erb` view to see how we route to these actions.
 
 Below are some line-by-line instructions on how to implement `add_favorite` and `remove_favorite`. We encourage you not to look at the solution unless you are stuck!  
 
@@ -390,7 +390,7 @@ This means that in your controller you can write code like `Favorite.create(user
 
 [...you can take a peek at it here.](https://github.com/ga-wdi-exercises/tunr_rails_many_to_many/tree/favorites-solution)
 
-## Closing Q&A 
+## Closing Q&A
 
 ## Bonus
 
