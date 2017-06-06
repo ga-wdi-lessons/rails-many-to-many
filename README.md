@@ -390,7 +390,7 @@ This means that in your controller you can write code like `Favorite.create(user
 
 [...you can take a peek at it here.](https://github.com/ga-wdi-exercises/tunr_rails_many_to_many/tree/favorites-solution)
 
-## Closing Q&A (10 minutes / 2:15)
+## Closing Q&A 
 
 ## Bonus
 
