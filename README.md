@@ -398,6 +398,12 @@ This means that in your controller you can write code like `Favorite.create(user
 
 ## Closing Q&A (10 minutes / 2:15)
 
+1. Why do we need to have Many-to-Many relationships? Give examples.
+
+2. What extra feature(s) do we need to add to our schema/model in order to implement Many-to-Many?
+
+3. How do we add non-standard routes inside our `resources` directive?
+
 ## Bonus
 
 ###  Additional Exercise: Many-to-Many Scribble
