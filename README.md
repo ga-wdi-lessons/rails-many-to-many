@@ -332,6 +332,8 @@ Rails.application.routes.draw do
   end
 end
 ```
+> Read more about `member` routes here: [Rails Routing - Adding More RESTful Actions](http://guides.rubyonrails.org/routing.html#adding-more-restful-actions)
+>
 > **Hint**: check out the output of `rails routes` to see what those lines generated!
 
 #### View
