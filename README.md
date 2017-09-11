@@ -87,6 +87,8 @@ For our domain's purposes, let's create a new model `Attendance` to represent th
 
 ```bash
 $ rails new attendance-tracker -d postgresql
+$ cd attendance-tracker
+$ rails db:drop db:create
 $ rails g model User username:string age:integer
 $ rails g model Event title:string location:string
 ```
@@ -186,6 +188,12 @@ end
 ```
 
 We're essentially defining `Attendance` as an intermediary model/table between `Event` and `User`. An event has many users through `Attendance` and vice versa.
+
+Now it's time to create the schema.
+
+```bash
+$ rails db:migrate
+```
 
 ## Break (10 minutes / 1:00)
 
