@@ -145,7 +145,7 @@ For the in-class exercises you will be adding a "favoriting" feature to Tunr. In
 
 To get started:
 
-1. Clone down [this repo](https://github.com/ga-wdi-exercises/tunr_rails_many_to_many/tree/favorites-starter)
+1. Clone down [this repo](https://git.generalassemb.ly/ga-wdi-exercises/tunr_rails_many_to_many/tree/favorites-starter)
 2. Checkout to the `favorites-starter` branch
 2. Run `$ bundle install`
 3. Run `$ rails db:drop db:create db:migrate db:seed`
@@ -402,7 +402,7 @@ This means that in your controller you can write code like `Favorite.create(user
 
 #### If You Need the Solution...
 
-[...you can take a peek at it here.](https://github.com/ga-wdi-exercises/tunr_rails_many_to_many/tree/favorites-solution)
+[...you can take a peek at it here.](https://git.generalassemb.ly/ga-wdi-exercises/tunr_rails_many_to_many/tree/favorites-solution)
 
 ## Closing Q&A (10 minutes / 2:15)
 
@@ -418,7 +418,7 @@ This means that in your controller you can write code like `Favorite.create(user
 
 If there's time left, spend the remainder of class working on Scribble. If you have completed the required steps, try implementing a many-to-many relationship between `Posts` and `Categories` using a `Tags` join table. This will require creating some new classes.
 
-[More information is available on the Scribble repo.](https://github.com/ga-wdi-exercises/scribble/blob/master/readme.md#bonus)
+[More information is available on the Scribble repo.](https://git.generalassemb.ly/ga-wdi-exercises/scribble/blob/master/readme.md#bonus)
 
 ## Screencasts
 
