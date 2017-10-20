@@ -56,7 +56,7 @@ In order to do many-to-many relationships in Rails, convention says to create a 
 
 ### You Do: Naming Join Tables (10 minutes)
 
-In pairs, spend **5 minutes** answering the following questions for the below pairs of models...  
+In pairs, spend **10 minutes** answering the following questions in [this issue](https://github.com/ga-wdi-lessons/rails-many-to-many/issues/5)  for the below pairs of models...  
   1. Should the relationship between these two models be represented using a many-to-many relationship?
   2. What would be a descriptive name for their resulting join table?
   3. What would be a useful additional column to include in the join table (e.g., `order`)?
@@ -139,8 +139,6 @@ This will generate an Attendance table with `user_id`, `event_id` and `num_guest
 
 ### You Do: Create the Favorite Model in Tunr (10 minutes / 0:40)
 
-> 5 minutes exercise. 5 minutes review.
-
 For the in-class exercises you will be adding a "favoriting" feature to Tunr. In this version of Tunr, a user should be able to favorite a song.
 
 To get started:
@@ -202,8 +200,6 @@ $ rails db:migrate
 Take **5 minutes** to update the Song, User and Favorite models to ensure we have the
 correct associations.
 
-> If you finish early, go ahead and start testing out these new associations using the Rails console.
-
 ### Testing Our Associations (10 minutes / 1:20)
 
 It's a good idea to use the `rails console` to test creating our associations.
@@ -239,7 +235,7 @@ lorraine.events
 
 ```
 
-### We Do: Add Web Interface to Tunr (15 minutes / 1:35)
+### You Do: Add Web Interface to Tunr
 
 So we've been able to generate associations between our models via the rails console. But what about our end users? How would somebody go about creating/removing a favorite on Tunr?
 
@@ -332,7 +328,7 @@ Rails.application.routes.draw do
   end
 
   resources :songs, only: [:index, :show] do
-  # This creates two custom routes for songs that correspond with controller actions of the same name.
+  # The member block creates two custom routes for songs that correspond with controller actions of the same name.
     member do
       post 'add_favorite'
       delete 'remove_favorite'
@@ -370,11 +366,11 @@ We've gone ahead a provided some starter code in `app/views/artists/show.html.er
 </ul>
 ```
 
-## Break (10 minutes / 1:45)
+## Break (10 minutes)
 
-### You Do: Update Songs Controller (20 minutes / 2:05)
+### You Do: Update Songs Controller
 
-Take **15 minutes** to create the `add_favorite` and `remove_favorite` actions in the **songs controller**. Look at the `artists/show.html.erb` view to see how we route to these actions.
+Create the `add_favorite` and `remove_favorite` actions in the **songs controller**. Look at the `artists/show.html.erb` view to see how we route to these actions.
 
 Below are some line-by-line instructions on how to implement `add_favorite` and `remove_favorite`. We encourage you not to look at the solution unless you are stuck!  
 
@@ -404,7 +400,7 @@ This means that in your controller you can write code like `Favorite.create(user
 
 [...you can take a peek at it here.](https://git.generalassemb.ly/ga-wdi-exercises/tunr_rails_many_to_many/tree/favorites-solution)
 
-## Closing Q&A (10 minutes / 2:15)
+## Closing Q&A
 
 1. Why do we need to have Many-to-Many relationships? Give examples.
 
